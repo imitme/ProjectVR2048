@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6285121739161364886}
-  - component: {fileID: 6285121739161364885}
   - component: {fileID: 6285121739161364884}
   - component: {fileID: 6285121739161364887}
   - component: {fileID: 6397632603838211996}
+  - component: {fileID: 8344297632135263504}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: BULLET
@@ -35,22 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6285121739161364885
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6285121739161364881}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!135 &6285121739161364884
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760c7c19fee3f1f44b219d1f56538848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
+  speed: 100
   damage: 20
 --- !u!96 &6397632603838211996
 TrailRenderer:
@@ -191,6 +175,22 @@ TrailRenderer:
   m_MinVertexDistance: 0.3
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!54 &8344297632135263504
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285121739161364881}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1001 &6285121738359717815
 PrefabInstance:
   m_ObjectHideFlags: 0

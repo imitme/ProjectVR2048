@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using HTC.UnityPlugin.Vive;
 
-public class FirePosControl : MonoBehaviour
+public class FirePos : MonoBehaviour
 {
 	public float fireRate = 0.1f;
 	public GameObject bullet;
