@@ -143,3 +143,6 @@ MonoBehaviour:
   limitHitCount: 3
   expTimeMin: 1
   expTimeMax: 2
+  meshes:
+  - {fileID: 4300000, guid: c34c879db77af964a8432a2abd2fd308, type: 3}
+  - {fileID: 4300000, guid: 9e203064fefcc294794ee363a2b1c4ba, type: 3}
