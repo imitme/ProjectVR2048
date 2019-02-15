@@ -99,6 +99,7 @@ public class Barrel : MonoBehaviour
 		HideBarrelandImpactMeshandEffects();
 		ShowExpEffect();
 		Destroy(barrel, endExpEffectTime);
+		GetComponent<BarrelSound>().ExpSfx();
 	}
 
 	private void HideBarrelandImpactMeshandEffects()
