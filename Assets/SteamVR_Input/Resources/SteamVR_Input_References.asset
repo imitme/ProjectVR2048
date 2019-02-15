@@ -77,6 +77,7 @@ MonoBehaviour:
   - __actions_htc_viu_in_viu_axis_2xy
   - __actions_htc_viu_in_viu_axis_3xy
   - __actions_htc_viu_in_viu_axis_4xy
+  - __actions_htc_viu_out_viu_vib_01
   actionObjects:
   - {fileID: 11400000, guid: 8e390d7e1703d874ab3675b70be4ef75, type: 2}
   - {fileID: 11400000, guid: 04093f1b25f2d1e4ba1314a97b071b97, type: 2}
@@ -132,3 +133,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ab7e53e26095db42810112ba367fb98, type: 2}
   - {fileID: 11400000, guid: ab2d7fc3c6fc773408494e0d31ca3169, type: 2}
   - {fileID: 11400000, guid: 9817eaa831ea96e4caa8be19e956d732, type: 2}
+  - {fileID: 11400000, guid: dea48af8f38d5f740a3a3eb481b149ff, type: 2}
