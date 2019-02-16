@@ -12,3 +12,8 @@ public enum EXPTYPE
 {
 	EXP1 = 0, EXP2
 }
+
+public enum MOVEDIR
+{
+	RIGHT = 0, LEFT, UP, DOWN, COUNT
+}
