@@ -22,6 +22,9 @@ public class FirePos : MonoBehaviour
 	private ParticleSystem muzzleFlash;
 	private AudioSource _audio;
 
+	private string fireRayTarget = "BARREL";
+	private string barrelOnDamage = "OnDamage";
+
 	private void Awake()
 	{
 		firePos = transform;
@@ -33,30 +36,57 @@ public class FirePos : MonoBehaviour
 		_audio = GetComponent<AudioSource>();
 	}
 
+	//private void Update()
+	//{
+	//	//Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
+
+	//	if (ViveInput.GetPressDown(hand, button))
+	//	{
+	//		if (Time.time >= nextFire)
+	//		{
+	//			Fire();
+	//			nextFire = Time.time + fireRate;
+	//		}
+	//		else
+	//			Debug.Log("wait");
+	//	}
+	//}
+
 	private void Update()
 	{
-		//Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
-
 		if (ViveInput.GetPressDown(hand, button))
 		{
 			if (Time.time >= nextFire)
 			{
-				Fire();
+				FireRay();
+				RaycastHit hit;
+				if (Physics.Raycast(firePos.position, firePos.forward, out hit, 100f))
+				{
+					if (hit.collider.CompareTag(fireRayTarget))
+					{
+						hit.collider.gameObject.SendMessage(barrelOnDamage, SendMessageOptions.DontRequireReceiver);
+					}
+				}
 				nextFire = Time.time + fireRate;
 			}
-			else
-				Debug.Log("wait");
 		}
 	}
 
-	private void Fire()
+	private void FireRay()
 	{
-		Instantiate(bullet, firePos.position, firePos.rotation);
-
 		cartridge.Play();
 		muzzleFlash.Play();
 		FireSfx();
 	}
+
+	//private void Fire()
+	//{
+	//	Instantiate(bullet, firePos.position, firePos.rotation);
+
+	//	cartridge.Play();
+	//	muzzleFlash.Play();
+	//	FireSfx();
+	//}
 
 	private void FireSfx()
 	{

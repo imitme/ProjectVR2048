@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3453875470342519403}
   - component: {fileID: 3453875470342519402}
   - component: {fileID: 4701129274609056384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BoundaryQuad
-  m_TagString: Untagged
+  m_TagString: MOVEQUAD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

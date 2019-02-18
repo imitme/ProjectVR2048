@@ -1,0 +1,53 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using HTC.UnityPlugin.Vive;
+
+public class LaserBeam : MonoBehaviour
+{
+	public HandRole hand = HandRole.RightHand;
+	public ControllerButton button = ControllerButton.Trigger;
+
+	private Transform tr;
+	private LineRenderer line;
+	private RaycastHit hit;
+	private float fireRate;
+	private float nextFire = 0.0f;
+
+	private void Start()
+	{
+		tr = GetComponent<Transform>();
+		line = GetComponent<LineRenderer>();
+		line.useWorldSpace = false;
+		line.enabled = false;
+		line.startWidth = 0.1f;
+		line.endWidth = 0.01f;
+		//fireRate = GetComponent<FirePos>().fireRate;
+		fireRate = GetComponentInParent<FirePos>().fireRate;
+	}
+
+	private void Update()
+	{
+		Ray ray = new Ray(tr.position, tr.forward);
+		if (ViveInput.GetPressDown(hand, button))
+		{
+			if (Time.time >= nextFire)
+			{
+				if (Physics.Raycast(ray, out hit, 100.0f))
+				{ line.SetPosition(1, tr.InverseTransformPoint(hit.point)); }
+				else
+				{
+					line.SetPosition(1, tr.InverseTransformPoint(ray.GetPoint(100.0f)));
+				}
+				StartCoroutine(ShowLaserBeam());
+			}
+		}
+
+		IEnumerator ShowLaserBeam()
+		{
+			line.enabled = true;
+			yield return new WaitForSeconds(Random.Range(0.01f, 0.2f));
+			line.enabled = false;
+		}
+	}
+}

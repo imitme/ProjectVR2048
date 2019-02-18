@@ -42,11 +42,16 @@ public class Barrel : MonoBehaviour
 	{
 		if (coll.collider.CompareTag(collisionTagNameforExplosion))
 		{
-			hitCount += 1;
-			CollBarrelProcess();
-			if (hitCount == limitHitCount - 1) { ChangeStateCanMoveBarrel(); }
-			if (hitCount == limitHitCount) { StartCoroutine(ExpBarrelProcess()); }
+			OnDamage();
 		}
+	}
+
+	public void OnDamage()
+	{
+		hitCount += 1;
+		CollBarrelProcess();
+		if (hitCount == limitHitCount - 1) { ChangeStateCanMoveBarrel(); }
+		if (hitCount == limitHitCount) { StartCoroutine(ExpBarrelProcess()); }
 	}
 
 	public void CollBarrelProcess()

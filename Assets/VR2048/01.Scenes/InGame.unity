@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 755755108}
   m_Layer: 11
   m_Name: UQuad
-  m_TagString: Untagged
+  m_TagString: MOVEQUAD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 1014189120}
   m_Layer: 11
   m_Name: RQuad
-  m_TagString: Untagged
+  m_TagString: MOVEQUAD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 1735256438}
   m_Layer: 11
   m_Name: DQuad
-  m_TagString: Untagged
+  m_TagString: MOVEQUAD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1749,7 +1749,7 @@ GameObject:
   - component: {fileID: 1980354767}
   m_Layer: 11
   m_Name: LQuad
-  m_TagString: Untagged
+  m_TagString: MOVEQUAD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
