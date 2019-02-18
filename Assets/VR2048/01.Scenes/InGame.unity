@@ -348,6 +348,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoundaryQuad (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3453875470342519404, guid: abafbb9f3c07bf544b430d9090cf6008,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3453875470342519405, guid: abafbb9f3c07bf544b430d9090cf6008,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,7 +435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 630709459}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,6 +472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoundaryQuad (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453875470342519404, guid: abafbb9f3c07bf544b430d9090cf6008,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3453875470342519405, guid: abafbb9f3c07bf544b430d9090cf6008,
         type: 3}
@@ -543,7 +553,7 @@ GameObject:
   - component: {fileID: 755755107}
   - component: {fileID: 755755106}
   - component: {fileID: 755755105}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +780,7 @@ GameObject:
   - component: {fileID: 1014189118}
   - component: {fileID: 1014189117}
   - component: {fileID: 1014189120}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,7 +887,8 @@ GameObject:
   - component: {fileID: 1026129768}
   - component: {fileID: 1026129767}
   - component: {fileID: 1026129766}
-  m_Layer: 0
+  - component: {fileID: 1026129770}
+  m_Layer: 11
   m_Name: LMoveQuad
   m_TagString: FORBARRELMOVE
   m_Icon: {fileID: 0}
@@ -914,7 +925,18 @@ MonoBehaviour:
   - eventID: 2
     callback:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1026129770}
+          m_MethodName: OnBarrelMove
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -977,6 +999,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026129764}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1026129770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026129764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5016292476646bd45aa7aa9af449c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionTagNameforBarrelMove: FORBARRELMOVE
+  currDir: 1
 --- !u!1001 &1060805034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1166,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoundaryQuad (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3453875470342519404, guid: abafbb9f3c07bf544b430d9090cf6008,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3453875470342519405, guid: abafbb9f3c07bf544b430d9090cf6008,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1199,7 +1240,7 @@ GameObject:
   - component: {fileID: 1735256437}
   - component: {fileID: 1735256436}
   - component: {fileID: 1735256435}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,7 +1329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772033932}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Boundarys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1387,7 +1428,7 @@ GameObject:
   - component: {fileID: 1980354766}
   - component: {fileID: 1980354765}
   - component: {fileID: 1980354764}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,6 +1526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BoundaryQuad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453875470342519404, guid: abafbb9f3c07bf544b430d9090cf6008,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3453875470342519405, guid: abafbb9f3c07bf544b430d9090cf6008,
         type: 3}

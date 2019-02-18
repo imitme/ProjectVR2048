@@ -10,6 +10,6 @@ public class BarrelMove : MonoBehaviour
 
 	public void OnBarrelMove()
 	{
-		Debug.Log("Move");
+		Debug.Log("Move : " + currDir);
 	}
 }
