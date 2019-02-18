@@ -35,6 +35,8 @@ public class FirePos : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
+
 		if (ViveInput.GetPressDown(hand, button))
 		{
 			if (Time.time >= nextFire)
