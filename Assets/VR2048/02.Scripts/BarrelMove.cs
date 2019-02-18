@@ -6,7 +6,7 @@ public class BarrelMove : MonoBehaviour
 {
 	[SerializeField] private string collisionTagNameforBarrelMove = "FORBARRELMOVE";
 
-	public MOVEDIR currDir = MOVEDIR.RIGHT;
+	public DIRECTION currDir = DIRECTION.RIGHT;
 
 	public void OnBarrelMove()
 	{

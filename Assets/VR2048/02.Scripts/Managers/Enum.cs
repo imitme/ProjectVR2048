@@ -13,7 +13,7 @@ public enum EXPTYPE
 	EXP1 = 0, EXP2
 }
 
-public enum MOVEDIR
+public enum DIRECTION
 {
-	RIGHT = 0, LEFT, UP, DOWN, COUNT
+	UP = 0, DOWN, RIGHT, LEFT, COUNT
 }

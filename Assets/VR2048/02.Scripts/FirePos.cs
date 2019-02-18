@@ -51,7 +51,6 @@ public class FirePos : MonoBehaviour
 
 	private void Fire()
 	{
-		Debug.Log("------------------------------------Fire");
 		Instantiate(bullet, firePos.position, firePos.rotation);
 
 		cartridge.Play();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridBarrel : MonoBehaviour
+public partial class GridBarrel : MonoBehaviour
 {
 	public GameObject gridCellsPanel;
 	public GameObject gridCellPrefab;
@@ -10,11 +10,15 @@ public class GridBarrel : MonoBehaviour
 	public GameObject cellNumsPrefab;
 
 	private float myCellSize;
-	private float cellSpan = 1.2f;
 	private Vector3 firstPos = Vector3.zero;
+
+	//변경가능 요소들
 
 	private int totalCount = 4;
 	private int testNumCellCountLimit = 1;
+	private float cellMovingTime = 0.1f;
+	private float cellSpan = 1.2f;
+	//--
 
 	public List<CellNum> cellNums;
 
