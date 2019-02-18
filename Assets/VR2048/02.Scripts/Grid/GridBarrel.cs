@@ -6,6 +6,8 @@ public class GridBarrel : MonoBehaviour
 {
 	public GameObject gridCellsPanel;
 	public GameObject gridCellPrefab;
+	public GameObject cellNumsPanel;
+	public GameObject cellNumsPrefab;
 
 	private float myCellSize;
 	private float cellSpan = 1.2f;
@@ -14,16 +16,18 @@ public class GridBarrel : MonoBehaviour
 	private int totalCount = 4;
 	private int testNumCellCountLimit = 1;
 
-	// Start is called before the first frame update
+	public List<CellNum> cellNums;
+
 	private void Start()
 	{
-		ResetPanel();
+		ResetPanelProcess();
 	}
 
-	public void ResetPanel()
+	public void ResetPanelProcess()
 	{
 		SetGridMap(totalCount);
 		SetCells(totalCount);
+		DrawRandomCells(totalCount, testNumCellCountLimit);
 	}
 
 	private void SetGridMap(int count)
@@ -62,5 +66,46 @@ public class GridBarrel : MonoBehaviour
 	private Vector3 PointToVector3(int col, int row)
 	{
 		return new Vector3(firstPos.x + col * myCellSize, firstPos.y + row * myCellSize, firstPos.z);
+	}
+
+	private void DrawRandomCells(int count, int totalCellNum)
+	{
+		int limitCount = 0;
+
+		while (limitCount < totalCellNum)
+		{
+			int col = Random.Range(0, count);
+			int row = Random.Range(0, count);
+
+			if (IsEmpty(col, row))
+			{
+				DrawCellNum(cellNumsPrefab, cellNumsPanel, col, row);
+				limitCount++;
+			}
+		}
+	}
+
+	private bool IsEmpty(int col, int row)
+	{
+		foreach (CellNum cellNum in cellNums)
+		{
+			if (cellNum.c == col && cellNum.r == row)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void DrawCellNum(GameObject cellNumPrefab, GameObject cellNumPanel, int col, int row)
+	{
+		GameObject cel = Instantiate(cellNumPrefab, cellNumPanel.transform);
+		cel.GetComponent<Transform>().position = PointToVector3(col, row);
+
+		var cellNum = cel.GetComponent<CellNum>();
+		cellNum.c = col;
+		cellNum.r = row;
+		cellNum.name = string.Format("({0}, {1})", cellNum.c, cellNum.r);
+		cellNums.Add(cellNum);
 	}
 }
