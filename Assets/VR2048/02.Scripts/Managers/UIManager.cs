@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-//using HTC.UnityPlugin.Vive;
-
 public class UIManager : MonoBehaviour
 {
 	[Serializable] public class MoveEvent : UnityEvent<DIRECTION> { }
