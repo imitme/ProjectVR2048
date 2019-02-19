@@ -4,11 +4,18 @@ using UnityEngine;
 
 public partial class GridBarrel : MonoBehaviour
 {
-	public void MovetoDirProcess(DIRECTION dir)
+	public void OnMovetoDir(DIRECTION dir)
 	{
-		Debug.Log("Move : " + dir);
+		Debug.Log("OnMovetoDir : " + dir);
+		StartCoroutine(MovetoDirProcess(dir));
+	}
+
+	private IEnumerator MovetoDirProcess(DIRECTION dir)
+	{
+		Debug.Log("MovetoDirProcess : " + dir);
 		CheckEmptyOriginalList();
 		bool isMove = GetCellsDirLine(dir);
+		yield return new WaitForSeconds(cellMovingTime);
 		DrawOneCell(isMove);
 	}
 

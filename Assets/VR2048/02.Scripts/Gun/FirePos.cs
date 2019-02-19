@@ -8,94 +8,96 @@ public struct PlayerSfx { public AudioClip[] fire; public AudioClip[] reload; }
 
 public class FirePos : MonoBehaviour
 {
-	public WEAPONTYPE currWeapon = WEAPONTYPE.SHOTGUN;
-	public GameObject bullet;
-	public float fireRate = 0.1f;
-	public ParticleSystem cartridge;
-	public PlayerSfx playerSfx;
+    public WEAPONTYPE currWeapon = WEAPONTYPE.SHOTGUN;
+    public GameObject bullet;
+    public float fireRate = 0.1f;
+    public ParticleSystem cartridge;
+    public PlayerSfx playerSfx;
 
-	public HandRole hand = HandRole.RightHand;
-	public ControllerButton button = ControllerButton.Trigger;
+    public HandRole hand = HandRole.RightHand;
+    public ControllerButton button = ControllerButton.Trigger;
 
-	private float nextFire = 0.0f;
-	private Transform firePos = null;
-	private ParticleSystem muzzleFlash;
-	private AudioSource _audio;
+    private float nextFire = 0.0f;
+    private Transform firePos = null;
+    private ParticleSystem muzzleFlash;
+    private AudioSource _audio;
 
-	private string fireRayTargetBarrelTag = "BARREL";
-	private string barrelOnDamageMethod = "OnDamage";
+    private string fireRayTargetBarrelTag = "BARREL";
+    private string barrelOnDamageMethod = "OnDamage";
+    private string barrelRemoveCellNumMethod = "RemoveCellNum";
 
-	private void Awake()
-	{
-		firePos = transform;
-	}
+    private void Awake()
+    {
+        firePos = transform;
+    }
 
-	private void Start()
-	{
-		muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>();
-		_audio = GetComponent<AudioSource>();
-	}
+    private void Start()
+    {
+        muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>();
+        _audio = GetComponent<AudioSource>();
+    }
 
-	//private void Update()
-	//{
-	//	//Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
+    //private void Update()
+    //{
+    //	//Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
 
-	//	if (ViveInput.GetPressDown(hand, button))
-	//	{
-	//		if (Time.time >= nextFire)
-	//		{
-	//			Fire();
-	//			nextFire = Time.time + fireRate;
-	//		}
-	//		else
-	//			Debug.Log("wait");
-	//	}
-	//}
+    //	if (ViveInput.GetPressDown(hand, button))
+    //	{
+    //		if (Time.time >= nextFire)
+    //		{
+    //			Fire();
+    //			nextFire = Time.time + fireRate;
+    //		}
+    //		else
+    //			Debug.Log("wait");
+    //	}
+    //}
 
-	private void Update()
-	{
-		if (ViveInput.GetPressDown(hand, button))
-		{
-			if (Time.time >= nextFire)
-			{
-				FireRay();
-				RaycastHit hit;
-				if (Physics.Raycast(firePos.position, firePos.forward, out hit, 100f))
-				{
-					if (hit.collider.CompareTag(fireRayTargetBarrelTag))
-					{
-						object[] _parms = new object[3];
-						_parms[0] = hit.point;
-						_parms[1] = hit.normal;
-						_parms[2] = firePos.position;
+    private void Update()
+    {
+        if (ViveInput.GetPressDown(hand, button))
+        {
+            if (Time.time >= nextFire)
+            {
+                FireRay();
+                RaycastHit hit;
+                if (Physics.Raycast(firePos.position, firePos.forward, out hit, 100f))
+                {
+                    if (hit.collider.CompareTag(fireRayTargetBarrelTag))
+                    {
+                        object[] _parms = new object[3];
+                        _parms[0] = hit.point;
+                        _parms[1] = hit.normal;
+                        _parms[2] = firePos.position;
 
-						hit.collider.gameObject.SendMessage(barrelOnDamageMethod, _parms, SendMessageOptions.DontRequireReceiver);
-					}
-				}
-				nextFire = Time.time + fireRate;
-			}
-		}
-	}
+                        hit.collider.gameObject.SendMessage(barrelOnDamageMethod, _parms, SendMessageOptions.DontRequireReceiver);
+                        //hit.collider.gameObject.SendMessage(barrelRemoveCellNumMethod, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+                nextFire = Time.time + fireRate;
+            }
+        }
+    }
 
-	private void FireRay()
-	{
-		cartridge.Play();
-		muzzleFlash.Play();
-		FireSfx();
-	}
+    private void FireRay()
+    {
+        cartridge.Play();
+        muzzleFlash.Play();
+        FireSfx();
+    }
 
-	//private void Fire()
-	//{
-	//	Instantiate(bullet, firePos.position, firePos.rotation);
+    //private void Fire()
+    //{
+    //	Instantiate(bullet, firePos.position, firePos.rotation);
 
-	//	cartridge.Play();
-	//	muzzleFlash.Play();
-	//	FireSfx();
-	//}
+    //	cartridge.Play();
+    //	muzzleFlash.Play();
+    //	FireSfx();
+    //}
 
-	private void FireSfx()
-	{
-		var _sfx = playerSfx.fire[(int)currWeapon];
-		_audio.PlayOneShot(_sfx);
-	}
+    private void FireSfx()
+    {
+        var _sfx = playerSfx.fire[(int)currWeapon];
+        _audio.PlayOneShot(_sfx);
+    }
 }

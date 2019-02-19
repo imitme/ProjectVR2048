@@ -6,6 +6,7 @@ public class CellNum : MonoBehaviour
 {
 	public int c = 0;
 	public int r = 0;
+	private bool isExplosion = false;
 
 	private int startNum = 2;
 	private int num;
@@ -17,6 +18,12 @@ public class CellNum : MonoBehaviour
 		set { num = value; txt.text = num.ToString(); }
 	}
 
+	public bool IsExplosion
+	{
+		get { return isExplosion; }
+		set { isExplosion = value; }
+	}
+
 	private void Awake()
 	{
 		txt = GetComponentInChildren<TextMesh>();
@@ -26,5 +33,10 @@ public class CellNum : MonoBehaviour
 	public void HideTxtwhenBarrelExp()
 	{
 		txt.text = " ";
+	}
+
+	public void OnExplosion()
+	{
+		IsExplosion = true;
 	}
 }

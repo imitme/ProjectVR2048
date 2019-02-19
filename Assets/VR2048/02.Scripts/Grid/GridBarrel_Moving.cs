@@ -90,10 +90,11 @@ public partial class GridBarrel : MonoBehaviour
 		for (float t = 0.0f; t <= movingTime; t += Time.deltaTime)
 		{
 			currPos = Vector3.Lerp(startPos, goalPos, t / movingTime);
-			movingCell.transform.localPosition = currPos;
+			movingCell.transform.position = currPos;
 			yield return null;  //왜 여기에?????  //렍더기다리는???
 		}
 
 		movingCell.GetComponent<Transform>().position = goalPos;
+		movingCell.name = string.Format("({0}, {1})", targetCol, targetRow);
 	}
 }

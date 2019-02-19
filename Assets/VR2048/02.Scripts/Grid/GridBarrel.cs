@@ -22,9 +22,29 @@ public partial class GridBarrel : MonoBehaviour
 
 	public List<CellNum> cellNums;
 
+	private GameManager gameManager = null;
+
 	private void Start()
 	{
 		ResetPanelProcess();
+	}
+
+	private void Awake()
+	{
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+	}
+
+	private void OnEnable()
+	{
+		gameManager.OnExpBarrel += RemoveCellNum;
+		//GameManager.Instance.OnExpBarrel += RemoveCellNum;
+	}
+
+	private void OnDisable()
+	{
+		gameManager.OnExpBarrel -= RemoveCellNum;
+
+		//GameManager.Instance.OnExpBarrel -= RemoveCellNum;
 	}
 
 	public void ResetPanelProcess()
@@ -55,7 +75,7 @@ public partial class GridBarrel : MonoBehaviour
 		{
 			for (int r = 0; r < count; r++)
 			{
-				DrawCells(gridCellPrefab, gridCellsPanel, c, r, myCellSize, string.Format("Cell ({0}, {1})", c + 1, r + 1));
+				DrawCells(gridCellPrefab, gridCellsPanel, c, r, myCellSize, string.Format("Cell ({0}, {1})", c, r));
 			}
 		}
 	}

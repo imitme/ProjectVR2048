@@ -1188,7 +1188,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1343672573}
-        m_MethodName: MovetoDirProcess
+        m_MethodName: OnMovetoDir
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

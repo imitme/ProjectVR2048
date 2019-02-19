@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,10 +19,11 @@ public class Barrel : MonoBehaviour
 	private int hitCount = 0;
 	private float expTimeMax = 0.0f;
 	private float expTime = 0.0f;
+	private bool isFire = false;
 	private GameObject barrel = null;
 	private Rigidbody rb = null;
 	private MeshFilter meshFilter = null;
-	private bool isFire = false;
+	private CellNum myCellNum = null;
 
 	private void Start()
 	{
@@ -30,14 +32,15 @@ public class Barrel : MonoBehaviour
 		limitEffect.SetActive(false);
 
 		expTimeMax = expTimeMin * 2.0f;
-		expTime = Random.Range(expTimeMin, expTimeMax);
+		expTime = UnityEngine.Random.Range(expTimeMin, expTimeMax);
 
 		barrel = this.gameObject;
 		rb = GetComponent<Rigidbody>();
 		meshFilter = GetComponent<MeshFilter>();
+		myCellNum = GetComponent<CellNum>();
 	}
 
-	public void OnDamage(object[] _params)
+	private void OnDamage(object[] _params)
 	{
 		Vector3 hitPos = (Vector3)_params[0];
 		Vector3 firePos = (Vector3)_params[2];
@@ -60,7 +63,7 @@ public class Barrel : MonoBehaviour
 
 	private void ChangeBarrelMesh()
 	{
-		int idx = Random.Range(0, meshes.Length);
+		int idx = UnityEngine.Random.Range(0, meshes.Length);
 		meshFilter.sharedMesh = meshes[idx];
 	}
 
@@ -96,11 +99,18 @@ public class Barrel : MonoBehaviour
 	public IEnumerator ExpBarrelProcess()
 	{
 		float endExpEffectTime = 2.0f;
+		RemoveAtCellNumList();
 		yield return new WaitForSeconds(expTime);
 		HideBarrelandImpactMeshandEffects();
 		ShowExpEffect();
 		Destroy(barrel, endExpEffectTime);
 		GetComponent<BarrelSound>().ExpSfx();
+	}
+
+	private void RemoveAtCellNumList()
+	{
+		myCellNum.OnExplosion();
+		GameManager.Instance.ExpBarrel();
 	}
 
 	private void HideBarrelandImpactMeshandEffects()
