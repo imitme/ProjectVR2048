@@ -6,9 +6,9 @@ public class Barrel : MonoBehaviour
 {
 	[SerializeField] private string collisionTagNameforExplosion = "BULLET";
 
-	private int limitHitCount = 4;
-	[SerializeField] private float expTimeMin = 0.0f;
-	[SerializeField] private float expTimeMax = 0.0f;
+	private int limitHitCount = 3;
+	private float barrelAddForce = 5f;
+	private float expTimeMin = 3.0f;
 	public GameObject expEffect;
 	public GameObject normalEffect;
 	public GameObject limitEffect;
@@ -16,38 +16,34 @@ public class Barrel : MonoBehaviour
 	public Mesh[] meshes;
 
 	private int hitCount = 0;
-	private Rigidbody rb;
-	private float expTime = 0;
+	private float expTimeMax = 0.0f;
+	private float expTime = 0.0f;
 	private GameObject barrel = null;
-	private MeshFilter meshFilter;
+	private Rigidbody rb = null;
+	private MeshFilter meshFilter = null;
 	private bool isFire = false;
 
 	private void Start()
 	{
-		barrel = this.gameObject;
-		rb = GetComponent<Rigidbody>();
-
-		expTimeMin = 3.0f;
-		expTimeMax = expTimeMin * 2.0f;
-		expTime = Random.Range(expTimeMin, expTimeMax);
-
-		meshFilter = GetComponent<MeshFilter>();
-
 		expEffect.SetActive(false);
 		normalEffect.SetActive(false);
 		limitEffect.SetActive(false);
+
+		expTimeMax = expTimeMin * 2.0f;
+		expTime = Random.Range(expTimeMin, expTimeMax);
+
+		barrel = this.gameObject;
+		rb = GetComponent<Rigidbody>();
+		meshFilter = GetComponent<MeshFilter>();
 	}
 
-	private void OnCollisionEnter(Collision coll)
+	public void OnDamage(object[] _params)
 	{
-		if (coll.collider.CompareTag(collisionTagNameforExplosion))
-		{
-			OnDamage();
-		}
-	}
+		Vector3 hitPos = (Vector3)_params[0];
+		Vector3 firePos = (Vector3)_params[2];
+		Vector3 incomeVector = (hitPos - firePos).normalized;
+		rb.AddForceAtPosition(incomeVector * barrelAddForce, hitPos);
 
-	public void OnDamage()
-	{
 		hitCount += 1;
 		CollBarrelProcess();
 		if (hitCount == limitHitCount - 1) { ChangeStateCanMoveBarrel(); }

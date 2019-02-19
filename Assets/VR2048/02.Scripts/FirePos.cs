@@ -22,8 +22,8 @@ public class FirePos : MonoBehaviour
 	private ParticleSystem muzzleFlash;
 	private AudioSource _audio;
 
-	private string fireRayTarget = "BARREL";
-	private string barrelOnDamage = "OnDamage";
+	private string fireRayTargetBarrelTag = "BARREL";
+	private string barrelOnDamageMethod = "OnDamage";
 
 	private void Awake()
 	{
@@ -62,9 +62,14 @@ public class FirePos : MonoBehaviour
 				RaycastHit hit;
 				if (Physics.Raycast(firePos.position, firePos.forward, out hit, 100f))
 				{
-					if (hit.collider.CompareTag(fireRayTarget))
+					if (hit.collider.CompareTag(fireRayTargetBarrelTag))
 					{
-						hit.collider.gameObject.SendMessage(barrelOnDamage, SendMessageOptions.DontRequireReceiver);
+						object[] _parms = new object[3];
+						_parms[0] = hit.point;
+						_parms[1] = hit.normal;
+						_parms[2] = firePos.position;
+
+						hit.collider.gameObject.SendMessage(barrelOnDamageMethod, _parms, SendMessageOptions.DontRequireReceiver);
 					}
 				}
 				nextFire = Time.time + fireRate;

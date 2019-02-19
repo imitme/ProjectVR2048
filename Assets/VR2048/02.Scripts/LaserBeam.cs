@@ -32,13 +32,20 @@ public class LaserBeam : MonoBehaviour
 		{
 			if (Time.time >= nextFire)
 			{
+				line.SetPosition(0, tr.InverseTransformPoint(ray.origin));
+				//line.SetPosition(0, tr.position);
 				if (Physics.Raycast(ray, out hit, 100.0f))
-				{ line.SetPosition(1, tr.InverseTransformPoint(hit.point)); }
+				{
+					line.SetPosition(1, tr.InverseTransformPoint(hit.point));
+					//line.SetPosition(1, tr.position);
+				}
 				else
 				{
 					line.SetPosition(1, tr.InverseTransformPoint(ray.GetPoint(100.0f)));
+					//line.SetPosition(1, ray.GetPoint(100.0f));
 				}
 				StartCoroutine(ShowLaserBeam());
+				nextFire = Time.time + fireRate;
 			}
 		}
 
