@@ -20,9 +20,8 @@ public class LaserBeam : MonoBehaviour
 		line = GetComponent<LineRenderer>();
 		line.useWorldSpace = false;
 		line.enabled = false;
-		line.startWidth = 0.1f;
-		line.endWidth = 0.01f;
-		//fireRate = GetComponent<FirePos>().fireRate;
+		line.startWidth = 0.01f;
+		line.endWidth = 0.1f;
 		fireRate = GetComponentInParent<FirePos>().fireRate;
 	}
 
