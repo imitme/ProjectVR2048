@@ -22,40 +22,25 @@ public partial class GridBarrel : MonoBehaviour
 
 	public List<CellNum> cellNums;
 
-	private GameManager gameManager = null;
-
-	private void Start()
-	{
+	private void Start() {
 		ResetPanelProcess();
 	}
 
-	private void Awake()
-	{
-		gameManager = GameObject.FindObjectOfType<GameManager>();
+	private void OnEnable() {
+		GameManager.Instance.OnExpBarrel += RemoveCellNum;
 	}
 
-	private void OnEnable()
-	{
-		gameManager.OnExpBarrel += RemoveCellNum;
-		//GameManager.Instance.OnExpBarrel += RemoveCellNum;
+	private void OnDisable() {
+		GameManager.Instance.OnExpBarrel -= RemoveCellNum;
 	}
 
-	private void OnDisable()
-	{
-		gameManager.OnExpBarrel -= RemoveCellNum;
-
-		//GameManager.Instance.OnExpBarrel -= RemoveCellNum;
-	}
-
-	public void ResetPanelProcess()
-	{
+	public void ResetPanelProcess() {
 		SetGridMap(totalCount);
 		SetCells(totalCount);
 		DrawRandomCells(totalCount, testNumCellCountLimit);
 	}
 
-	private void SetGridMap(int count)
-	{
+	private void SetGridMap(int count) {
 		var myPanel = gridCellsPanel.GetComponent<Transform>();
 		var midSize = cellSpan * ((float)totalCount - 1) * 0.5f;
 		var firstPositionX = myPanel.position.x - midSize;
@@ -69,60 +54,48 @@ public partial class GridBarrel : MonoBehaviour
 		myCellSize = cellSize;
 	}
 
-	private void SetCells(int count)
-	{
-		for (int c = 0; c < count; c++)
-		{
-			for (int r = 0; r < count; r++)
-			{
+	private void SetCells(int count) {
+		for (int c = 0; c < count; c++) {
+			for (int r = 0; r < count; r++) {
 				DrawCells(gridCellPrefab, gridCellsPanel, c, r, myCellSize, string.Format("Cell ({0}, {1})", c, r));
 			}
 		}
 	}
 
-	private void DrawCells(GameObject cellPrefab, GameObject CellsPanel, int c, int r, float cellSize, string cellname)
-	{
+	private void DrawCells(GameObject cellPrefab, GameObject CellsPanel, int c, int r, float cellSize, string cellname) {
 		GameObject cel = Instantiate(cellPrefab, CellsPanel.transform);
 		cel.GetComponent<Transform>().position = PointToVector3(c, r);
 		cel.name = cellname;
 	}
 
-	private Vector3 PointToVector3(int col, int row)
-	{
+	private Vector3 PointToVector3(int col, int row) {
 		return new Vector3(firstPos.x + col * myCellSize, firstPos.y + row * myCellSize, firstPos.z);
 	}
 
-	private void DrawRandomCells(int count, int totalCellNum)
-	{
+	private void DrawRandomCells(int count, int totalCellNum) {
 		int limitCount = 0;
 
-		while (limitCount < totalCellNum)
-		{
+		while (limitCount < totalCellNum) {
 			int col = Random.Range(0, count);
 			int row = Random.Range(0, count);
 
-			if (IsEmpty(col, row))
-			{
+			if (IsEmpty(col, row)) {
 				DrawCellNum(cellNumsPrefab, cellNumsPanel, col, row);
 				limitCount++;
 			}
 		}
 	}
 
-	private bool IsEmpty(int col, int row)
-	{
-		foreach (CellNum cellNum in cellNums)
-		{
-			if (cellNum.c == col && cellNum.r == row)
-			{
+	private bool IsEmpty(int col, int row) {
+		foreach (CellNum cellNum in cellNums) {
+			if (cellNum.c == col && cellNum.r == row) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	private void DrawCellNum(GameObject cellNumPrefab, GameObject cellNumPanel, int col, int row)
-	{
+	private void DrawCellNum(GameObject cellNumPrefab, GameObject cellNumPanel, int col, int row) {
 		GameObject cel = Instantiate(cellNumPrefab, cellNumPanel.transform);
 		cel.GetComponent<Transform>().position = PointToVector3(col, row);
 
