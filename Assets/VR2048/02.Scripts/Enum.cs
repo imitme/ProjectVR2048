@@ -12,3 +12,8 @@ public enum DIRECTION
 {
 	UP = 0, DOWN, RIGHT, LEFT, COUNT
 }
+
+public enum CANVASSTATE
+{
+	LOBBY = 0, INGAME, MENU
+}

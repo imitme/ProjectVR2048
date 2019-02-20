@@ -11,15 +11,16 @@ public class GameManager : MonoBehaviour
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
 
-	private void Awake()
-	{
+	private void Awake() {
 		if (Instance != null) { Destroy(this); return; }
 		Instance = this;
 		//   getUIManager = GameObject.FindObjectOfType<UIManager>();
 	}
 
-	public void ExpBarrel()
-	{
+	public void ExpBarrel() {
 		OnExpBarrel?.Invoke();
+	}
+
+	public void StartGame() {
 	}
 }

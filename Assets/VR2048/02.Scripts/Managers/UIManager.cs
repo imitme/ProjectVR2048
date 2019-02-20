@@ -3,13 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using HTC.UnityPlugin.Vive;
 
 public class UIManager : MonoBehaviour
 {
 	[Serializable] public class MoveEvent : UnityEvent<DIRECTION> { }
 
 	public MoveEvent moveEvent;
+	public UnityEvent OnInGameEvent;
+	public UnityEvent OnOffMenuEvent;
+	public UnityEvent OnLobbyEvent;
 
+	public HandRole handR = HandRole.RightHand;
+	public HandRole handL = HandRole.LeftHand;
+	public ControllerButton menuButton = ControllerButton.Menu;
+
+	private void Update() {
+		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)) {
+			OnOffMenuEvent?.Invoke();
+		}
+	}
+
+	//------------------- InGame
 	public void OnR_Button() {
 		moveEvent?.Invoke(DIRECTION.RIGHT);
 	}
@@ -30,8 +45,14 @@ public class UIManager : MonoBehaviour
 		moveEvent?.Invoke(DIRECTION.COUNT);
 	}
 
+	//-------------------Lobby
+	public void OnStart_Button() {
+		OnInGameEvent?.Invoke();
+	}
+
+	//-------------------Menu
 	public void OnContinue_Button() {
-		Debug.Log("OnContinue_Button");
+		OnOffMenuEvent?.Invoke();
 	}
 
 	public void OnNewGame_Button() {
@@ -39,6 +60,6 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void OnQuit_Button() {
-		Debug.Log("OnQuit_Button");
+		OnLobbyEvent?.Invoke();
 	}
 }
