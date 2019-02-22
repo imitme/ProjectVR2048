@@ -9,6 +9,9 @@ TagManager:
   - BULLET
   - BARREL
   - MOVEQUAD
+  - Enemy
+  - Boundary
+  - WEAPON
   layers:
   - Default
   - TransparentFX
