@@ -6,37 +6,32 @@ public class CellNum : MonoBehaviour
 {
 	public int c = 0;
 	public int r = 0;
-	private bool isExplosion = false;
+	private bool isExploded = false;
 
 	private int startNum = 2;
 	private int num;
 	private TextMesh txt;
 
-	public int Num
-	{
+	public int Num {
 		get { return num; }
 		set { num = value; txt.text = num.ToString(); }
 	}
 
-	public bool IsExplosion
-	{
-		get { return isExplosion; }
-		set { isExplosion = value; }
+	public bool IsExploded {
+		get { return isExploded; }
+		set { isExploded = value; }
 	}
 
-	private void Awake()
-	{
+	private void Awake() {
 		txt = GetComponentInChildren<TextMesh>();
 		Num = startNum;
 	}
 
-	public void HideTxtwhenBarrelExp()
-	{
+	public void HideTxtwhenExpBarrel() {
 		txt.text = " ";
 	}
 
-	public void OnExplosion()
-	{
-		IsExplosion = true;
+	public void ChangeStatetoExplosion() {
+		IsExploded = true;
 	}
 }

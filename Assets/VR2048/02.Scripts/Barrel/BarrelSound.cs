@@ -11,14 +11,12 @@ public class BarrelSound : MonoBehaviour
 	public ExpSfx expSfx;
 	private AudioSource _audio;
 
-	// Start is called before the first frame update
-	private void Start()
-	{
+	private void Start() {
 		_audio = GetComponent<AudioSource>();
 	}
 
-	public void ExpSfx()
-	{
+	public void ExpSfx() {
+		Debug.Log("ExpSfx / PlayOneShot");
 		var _sfx = expSfx.expBarrel[(int)currExp];
 		_audio.PlayOneShot(_sfx);
 	}

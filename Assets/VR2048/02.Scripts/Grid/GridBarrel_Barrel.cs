@@ -4,13 +4,10 @@ using UnityEngine;
 
 public partial class GridBarrel : MonoBehaviour
 {
-	public void RemoveCellNum()
-	{
+	public void RemoveCellNum() {
 		int removeIndex = 0;
-		for (int index = 0; index < cellNums.Count; index++)
-		{
-			if (cellNums[index].IsExplosion == true)
-			{
+		for (int index = 0; index < cellNums.Count; index++) {
+			if (cellNums[index].IsExploded == true) {
 				removeIndex = index;
 			}
 		}

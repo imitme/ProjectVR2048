@@ -14,8 +14,7 @@ public class LaserBeam : MonoBehaviour
 	private float fireRate;
 	private float nextFire = 0.0f;
 
-	private void Start()
-	{
+	private void Start() {
 		tr = GetComponent<Transform>();
 		line = GetComponent<LineRenderer>();
 		line.useWorldSpace = false;
@@ -25,32 +24,22 @@ public class LaserBeam : MonoBehaviour
 		fireRate = GetComponentInParent<FirePos>().fireRate;
 	}
 
-	private void Update()
-	{
+	private void Update() {
 		Ray ray = new Ray(tr.position, tr.forward);
-		if (ViveInput.GetPressDown(hand, button))
-		{
-			if (Time.time >= nextFire)
-			{
+		if (ViveInput.GetPressDown(hand, button)) {
+			if (Time.time >= nextFire) {
 				line.SetPosition(0, tr.InverseTransformPoint(ray.origin));
-				//line.SetPosition(0, tr.position);
-				if (Physics.Raycast(ray, out hit, 100.0f))
-				{
+				if (Physics.Raycast(ray, out hit, 100.0f)) {
 					line.SetPosition(1, tr.InverseTransformPoint(hit.point));
-					//line.SetPosition(1, tr.position);
-				}
-				else
-				{
+				} else {
 					line.SetPosition(1, tr.InverseTransformPoint(ray.GetPoint(100.0f)));
-					//line.SetPosition(1, ray.GetPoint(100.0f));
 				}
 				StartCoroutine(ShowLaserBeam());
 				nextFire = Time.time + fireRate;
 			}
 		}
 
-		IEnumerator ShowLaserBeam()
-		{
+		IEnumerator ShowLaserBeam() {
 			line.enabled = true;
 			yield return new WaitForSeconds(Random.Range(0.01f, 0.2f));
 			line.enabled = false;

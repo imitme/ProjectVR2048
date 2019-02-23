@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	public event Action OnExpBarrel;
+	public event Action OnRemoveCellNumWhenExpBarrel;
 
 	public Vector3 spawnValues;
 	public GameObject[] hazards;
@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
 		Debug.Log(chargeGauge);
 	}
 
-	public void ExpBarrel() {
-		OnExpBarrel?.Invoke();
+	public void RemoveCellNumWhenExpBarrel() {
+		OnRemoveCellNumWhenExpBarrel?.Invoke();
 	}
 
 	public void StartGame() {

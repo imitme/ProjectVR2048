@@ -27,11 +27,11 @@ public partial class GridBarrel : MonoBehaviour
 	}
 
 	private void OnEnable() {
-		GameManager.Instance.OnExpBarrel += RemoveCellNum;
+		GameManager.Instance.OnRemoveCellNumWhenExpBarrel += RemoveCellNum;
 	}
 
 	private void OnDisable() {
-		GameManager.Instance.OnExpBarrel -= RemoveCellNum;
+		GameManager.Instance.OnRemoveCellNumWhenExpBarrel -= RemoveCellNum;
 	}
 
 	public void ResetPanelProcess() {

@@ -6,14 +6,4 @@ public class WeaponInfo : MonoBehaviour
 {
 	public string weaponName;
 	public float rangeGauge;
-
-	//public float chargeGauge;
-	//private float currGauge;
-
-	//public int ChargeGauge {
-	//	get { value = chargeGauge; };
-	//	set {
-	//		chargeGauge = value;
-	//	}
-	//}
 }

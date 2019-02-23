@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1031021115}
   - component: {fileID: 1031021114}
   - component: {fileID: 2679296720023110473}
-  - component: {fileID: 1819016350749932522}
   - component: {fileID: 9190495572247332503}
   - component: {fileID: 6165713000464595520}
   - component: {fileID: 2300167561575041636}
@@ -116,21 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &1819016350749932522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031021112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255bc1d8edc11c545be670ab4df81487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTimeChanged: 50
-  sparkEffect: {fileID: 1000010355441670, guid: 965bb9b01c7e97b419544e4b3a6a3760,
-    type: 3}
 --- !u!114 &9190495572247332503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24feab5885252904fb392ef5b50557b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionTagNameforExplosion: BULLET
   expEffect: {fileID: 1071052301460435933}
   normalEffect: {fileID: 5669260575847505606}
   limitEffect: {fileID: 1567743422557683495}
+  sparkEffect: {fileID: 1000011945391522, guid: 2b22cd43ef1bb2b48bdcf0d517370a6c,
+    type: 3}
+  bulletMetalEffect: {fileID: 1000010355441670, guid: 965bb9b01c7e97b419544e4b3a6a3760,
+    type: 3}
   lightPS: {fileID: 1692610333121247363}
   meshes:
   - {fileID: 4300000, guid: c34c879db77af964a8432a2abd2fd308, type: 3}
@@ -445,7 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013462590818, guid: 7a3bf0e723a6b134a9441b6c80ec43b8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198000012942003240, guid: 7a3bf0e723a6b134a9441b6c80ec43b8,
         type: 3}
@@ -577,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010823978654, guid: 3228a22491941734bb83ad691d17fcb9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198000012351162682, guid: 3228a22491941734bb83ad691d17fcb9,
         type: 3}
@@ -785,7 +772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011945391522, guid: 015dddafaf9913a468033587fcc43034, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198000012368742472, guid: 015dddafaf9913a468033587fcc43034,
         type: 3}
