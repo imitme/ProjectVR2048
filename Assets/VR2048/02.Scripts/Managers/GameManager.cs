@@ -7,16 +7,17 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
-	public event Action OnRemoveCellNumWhenExpBarrel;
-
-	public Vector3 spawnValues;
-	public GameObject[] hazards;
-	private int hazardCount;
-	private float spawnWait;
-	private float startWait;
-	private float waveWait;
+	public event Action OnRemoveCellNumWhenExpBarrelEvent, ResetGridBarrelEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
+
+	public TextMesh scoreText;
+	private int score = 0;
+
+	public int Score {
+		get { return score; }
+		set { score = value; scoreText.text = string.Format("Score : {0}", score); }
+	}
 
 	private void Awake() {
 		if (Instance != null) { Destroy(this); return; }
@@ -24,26 +25,12 @@ public class GameManager : MonoBehaviour
 		//   getUIManager = GameObject.FindObjectOfType<UIManager>();
 	}
 
-	private void Start() {
-		hazardCount = 10;
-		spawnWait = 0.75f;
-		startWait = 1.0f;
-		waveWait = 4.0f;
-		StartCoroutine(SpawnWaves());
+	public void GotoLobby() {
+		ResetPlayerInfo();
 	}
 
-	private IEnumerator SpawnWaves() {
-		yield return new WaitForSeconds(startWait);
-		while (true) {
-			for (int i = 0; i < hazardCount; i++) {
-				GameObject hazard = hazards[UnityEngine.Random.Range(0, hazards.Length)];
-				Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate(hazard, spawnPosition, spawnRotation);
-				yield return new WaitForSeconds(spawnWait);
-			}
-			yield return new WaitForSeconds(waveWait);
-		}
+	private void ResetPlayerInfo() {
+		Score = 0;
 	}
 
 	public void AddChargeGauge(float chargeGauge) {
@@ -51,9 +38,15 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void RemoveCellNumWhenExpBarrel() {
-		OnRemoveCellNumWhenExpBarrel?.Invoke();
+		OnRemoveCellNumWhenExpBarrelEvent?.Invoke();
 	}
 
-	public void StartGame() {
+	public void GotoInGame() {
+		ResetPlayerInfo();
+		ResetGridBarrel();
+	}
+
+	private void ResetGridBarrel() {
+		ResetGridBarrelEvent?.Invoke();
 	}
 }

@@ -9,13 +9,19 @@ public class CanvasManager : MonoBehaviour
 	public GameObject LobbyCanvas;
 
 	private void Start() {
-		OnLobby_Canvas();
+		OnlyLobbyOn();
 	}
 
 	public void OnInGame_Canvas() {
-		InGameCanvas.SetActive(true);
-		MenuCanvas.SetActive(false);
-		LobbyCanvas.SetActive(false);
+		StartCoroutine(GotoInGame());
+	}
+
+	public void OnLobby_Canvas() {
+		StartCoroutine(GotoLobby());
+	}
+
+	public void OnNewGame_Canvas() {
+		StartCoroutine(GotoInGame());
 	}
 
 	public void OnOffMenu_Canvas() {
@@ -25,9 +31,27 @@ public class CanvasManager : MonoBehaviour
 		}
 	}
 
-	public void OnLobby_Canvas() {
+	private IEnumerator GotoInGame() {
+		yield return new WaitForSeconds(0.3f);
+		OnlyInGameOn();
+		GameManager.Instance.GotoInGame();
+	}
+
+	private IEnumerator GotoLobby() {
+		yield return new WaitForSeconds(0.5f);
+		OnlyLobbyOn();
+		GameManager.Instance.GotoLobby();
+	}
+
+	private void OnlyLobbyOn() {
 		InGameCanvas.SetActive(false);
 		MenuCanvas.SetActive(false);
 		LobbyCanvas.SetActive(true);
+	}
+
+	private void OnlyInGameOn() {
+		InGameCanvas.SetActive(true);
+		MenuCanvas.SetActive(false);
+		LobbyCanvas.SetActive(false);
 	}
 }

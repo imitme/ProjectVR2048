@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class GridBarrel : MonoBehaviour
 {
 	public GameObject gridCellsPanel;
-	public GameObject gridCellPrefab;
+	public GameObject gridCellsPrefab;
 	public GameObject cellNumsPanel;
 	public GameObject cellNumsPrefab;
 
@@ -23,18 +23,44 @@ public partial class GridBarrel : MonoBehaviour
 	public List<CellNum> cellNums;
 
 	private void Start() {
-		ResetPanelProcess();
+		SetGridBarrel();
 	}
 
 	private void OnEnable() {
-		GameManager.Instance.OnRemoveCellNumWhenExpBarrel += RemoveCellNum;
+		GameManager.Instance.OnRemoveCellNumWhenExpBarrelEvent += RemoveCellNum;
+		GameManager.Instance.ResetGridBarrelEvent += ResetGridBarrel;
 	}
 
 	private void OnDisable() {
-		GameManager.Instance.OnRemoveCellNumWhenExpBarrel -= RemoveCellNum;
+		GameManager.Instance.OnRemoveCellNumWhenExpBarrelEvent -= RemoveCellNum;
+		GameManager.Instance.ResetGridBarrelEvent -= ResetGridBarrel;
 	}
 
-	public void ResetPanelProcess() {
+	public void ResetGridBarrel() {
+		ClearGridCellsPrefab();
+		ClearCellNumsPrefab();
+		cellNums.Clear();
+		SetGridBarrel();
+	}
+
+	private void ClearGridCellsPrefab() {
+		Transform[] gridCellPrefab = gridCellsPanel.GetComponentsInChildren<Transform>();
+		for (int i = 1; i < gridCellPrefab.Length; i++) {
+			Destroy(gridCellPrefab[i].gameObject);
+		}
+	}
+
+	private void ClearCellNumsPrefab() {
+		//CellNum[] cellNumPrefabs = cellNumsPanel.GetComponentsInChildren<CellNum>();
+		Transform[] cellNumPrefabs = cellNumsPanel.GetComponentsInChildren<Transform>();
+
+		//for (int i = 0; i < cellNumPrefabs.Length; i++) {
+		for (int i = 1; i < cellNumPrefabs.Length; i++) {
+			Destroy(cellNumPrefabs[i].gameObject);
+		}
+	}
+
+	private void SetGridBarrel() {
 		SetGridMap(totalCount);
 		SetCells(totalCount);
 		DrawRandomCells(totalCount, testNumCellCountLimit);
@@ -57,7 +83,7 @@ public partial class GridBarrel : MonoBehaviour
 	private void SetCells(int count) {
 		for (int c = 0; c < count; c++) {
 			for (int r = 0; r < count; r++) {
-				DrawCells(gridCellPrefab, gridCellsPanel, c, r, myCellSize, string.Format("Cell ({0}, {1})", c, r));
+				DrawCells(gridCellsPrefab, gridCellsPanel, c, r, myCellSize, string.Format("Cell ({0}, {1})", c, r));
 			}
 		}
 	}

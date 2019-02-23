@@ -181,9 +181,7 @@ public partial class GridBarrel : MonoBehaviour
 
 			if (celLine[currentCell].Num == celLine[nextCell].Num) {
 				///점수 보내주고
-				//gameManager.Score += celLine[currentCell].num;
-
-				///움직이고
+				GameManager.Instance.Score += celLine[currentCell].Num;
 
 				///mergeAnim
 				//celLine[nextCell].StartMergeAnim();

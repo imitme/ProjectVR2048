@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
 	public MoveEvent moveEvent;
 	public UnityEvent OnInGameEvent;
 	public UnityEvent OnOffMenuEvent;
+	public UnityEvent OnNewGameEvent;
 	public UnityEvent OnLobbyEvent;
 
 	public HandRole handR = HandRole.RightHand;
@@ -56,6 +57,8 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void OnNewGame_Button() {
+		OnNewGameEvent?.Invoke();
+
 		Debug.Log("OnNewGame_Button");
 	}
 
