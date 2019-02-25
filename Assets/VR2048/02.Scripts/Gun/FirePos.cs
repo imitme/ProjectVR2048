@@ -49,7 +49,6 @@ public class FirePos : MonoBehaviour
 						_parms[2] = firePos.position;
 
 						hit.collider.gameObject.SendMessage(barrelOnDamageMethod, _parms, SendMessageOptions.DontRequireReceiver);
-						//hit.collider.gameObject.SendMessage(barrelRemoveCellNumMethod, SendMessageOptions.DontRequireReceiver);
 					}
 					if (hit.collider.CompareTag(QuadsTag)) {
 						object[] _parms = new object[4];
