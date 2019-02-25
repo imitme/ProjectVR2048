@@ -11,10 +11,9 @@ public class Barrel : MonoBehaviour
 	public GameObject expEffect;
 	public GameObject normalEffect;
 	public GameObject limitEffect;
+	public ParticleSystem lightPS;
 	public GameObject sparkEffect;
 	public GameObject bulletMetalEffect;
-
-	public ParticleSystem lightPS;
 	public Mesh[] meshes;
 
 	private int hitCount = 0;
@@ -40,7 +39,7 @@ public class Barrel : MonoBehaviour
 		myCellNum = GetComponent<CellNum>();
 	}
 
-	private void OnDamage(object[] _params) {
+	public void OnDamage(object[] _params) {
 		Vector3 hitPos = (Vector3)_params[0];
 		Vector3 hitNormal = (Vector3)_params[1];
 		Vector3 firePos = (Vector3)_params[2];

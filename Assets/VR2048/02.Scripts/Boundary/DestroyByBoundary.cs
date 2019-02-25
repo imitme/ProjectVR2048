@@ -8,6 +8,7 @@ public class DestroyByBoundary : MonoBehaviour
 		if (other.tag == "BARREL")
 			return;
 
-		Destroy(other.gameObject);
+		Destroy(other.GetComponentInParent<Asteroid>().gameObject);
+		//Destroy(other.gameObject);
 	}
 }

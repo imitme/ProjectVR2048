@@ -130,11 +130,11 @@ MonoBehaviour:
   expEffect: {fileID: 1071052301460435933}
   normalEffect: {fileID: 5669260575847505606}
   limitEffect: {fileID: 1567743422557683495}
+  lightPS: {fileID: 1692610333121247363}
   sparkEffect: {fileID: 1000011945391522, guid: 2b22cd43ef1bb2b48bdcf0d517370a6c,
     type: 3}
   bulletMetalEffect: {fileID: 1000010355441670, guid: 965bb9b01c7e97b419544e4b3a6a3760,
     type: 3}
-  lightPS: {fileID: 1692610333121247363}
   meshes:
   - {fileID: 4300000, guid: c34c879db77af964a8432a2abd2fd308, type: 3}
   - {fileID: 4300000, guid: 9e203064fefcc294794ee363a2b1c4ba, type: 3}
@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c: 0
   r: 0
+  mergeEffect: {fileID: 1000011128802252, guid: f87e89c9af9281e4eb2179158a462c5d,
+    type: 3}
 --- !u!82 &5254130529675790711
 AudioSource:
   m_ObjectHideFlags: 0

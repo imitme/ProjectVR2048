@@ -183,8 +183,8 @@ public partial class GridBarrel : MonoBehaviour
 				///점수 보내주고
 				GameManager.Instance.Score += celLine[currentCell].Num;
 
-				///mergeAnim
-				//celLine[nextCell].StartMergeAnim();
+				//합쳐진 후 폭발!
+				celLine[currentCell].PlayMergeEffect();
 
 				///숫자 합쳐주고.
 				int mergeNum = celLine[nextCell].Num;
