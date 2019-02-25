@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void OnNot_Button() {
-		moveEvent?.Invoke(DIRECTION.COUNT);
+		moveEvent?.Invoke(DIRECTION.count);
 	}
 
 	//-------------------Lobby

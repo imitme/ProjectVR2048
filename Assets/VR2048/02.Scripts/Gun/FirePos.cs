@@ -22,7 +22,8 @@ public class FirePos : MonoBehaviour
 	private ParticleSystem muzzleFlash;
 	private AudioSource _audio;
 
-	private string fireRayTargetBarrelTag = "BARREL";
+	private string BarrelTag = "BARREL";
+	private string QuadsTag = "MOVEQUAD";
 	private string barrelOnDamageMethod = "OnDamage";
 	private string barrelRemoveCellNumMethod = "RemoveCellNum";
 
@@ -41,7 +42,7 @@ public class FirePos : MonoBehaviour
 				FireRay();
 				RaycastHit hit;
 				if (Physics.Raycast(firePos.position, firePos.forward, out hit, 100f)) {
-					if (hit.collider.CompareTag(fireRayTargetBarrelTag)) {
+					if (hit.collider.CompareTag(BarrelTag)) {
 						object[] _parms = new object[3];
 						_parms[0] = hit.point;
 						_parms[1] = hit.normal;
@@ -50,7 +51,22 @@ public class FirePos : MonoBehaviour
 						hit.collider.gameObject.SendMessage(barrelOnDamageMethod, _parms, SendMessageOptions.DontRequireReceiver);
 						//hit.collider.gameObject.SendMessage(barrelRemoveCellNumMethod, SendMessageOptions.DontRequireReceiver);
 					}
+					if (hit.collider.CompareTag(QuadsTag)) {
+						object[] _parms = new object[4];
+						_parms[0] = hit.point;
+						_parms[1] = hit.normal;
+						_parms[2] = firePos.position;
+						if (hand == HandRole.RightHand) {
+							_parms[3] = HANDTYPE.RIGHTHAND;
+						} else {
+							_parms[3] = HANDTYPE.LEFTHAND;
+						}
+
+						Quad hitQuad = hit.collider.gameObject.GetComponent<Quad>();
+						hitQuad.SendControlPoint(_parms);
+					}
 				}
+
 				nextFire = Time.time + fireRate;
 			}
 		}

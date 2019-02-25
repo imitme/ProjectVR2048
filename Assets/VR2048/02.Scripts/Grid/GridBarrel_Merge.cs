@@ -49,7 +49,7 @@ public partial class GridBarrel : MonoBehaviour
 
 				break;
 
-			case DIRECTION.COUNT:
+			case DIRECTION.count:
 				break;
 
 			default:
@@ -116,7 +116,7 @@ public partial class GridBarrel : MonoBehaviour
 						checkMoveCount++;
 					break;
 
-				case DIRECTION.COUNT:
+				case DIRECTION.count:
 					NotMove();
 
 					break;
