@@ -6,12 +6,13 @@ public class CellNum : MonoBehaviour
 {
 	public int c = 0;
 	public int r = 0;
-	private bool isExploded = false;
+
 	public GameObject mergeEffect;
 
 	private int startNum = 2;
-	private int num;
 	private TextMesh txt;
+
+	private int num;
 
 	public int Num {
 		get { return num; }
@@ -19,9 +20,11 @@ public class CellNum : MonoBehaviour
 	}
 
 	public bool IsExploded {
-		get { return isExploded; }
-		set { isExploded = value; }
+		get;
+		set;
 	}
+
+	public bool IsMerged { get; set; } = false;
 
 	private void Awake() {
 		txt = GetComponentInChildren<TextMesh>();
@@ -37,10 +40,14 @@ public class CellNum : MonoBehaviour
 	}
 
 	public void PlayMergeEffect() {
-		Debug.Log(2);
+		IsMerged = false;
 
 		Vector3 mergePos = GetComponent<Transform>().position;
 		Quaternion rot = Quaternion.identity;
 		Instantiate(mergeEffect, mergePos, rot);
+	}
+
+	public void ChangeStatetoMerged() {
+		IsMerged = true;
 	}
 }
