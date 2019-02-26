@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
+	public Transform AsteroidsPos;
 	public Vector3 spawnValues;
 	public GameObject[] hazards;
 	private int hazardCount;
@@ -22,14 +23,33 @@ public class AsteroidManager : MonoBehaviour
 
 	private void OnEnable() {
 		GameManager.Instance.StartAsteroidEvent += StartAsteroid;
+		GameManager.Instance.GameOverAsteroidEvent += GameOverAsteroid;
 	}
 
 	private void OnDisable() {
 		GameManager.Instance.StartAsteroidEvent -= StartAsteroid;
+		GameManager.Instance.GameOverAsteroidEvent -= GameOverAsteroid;
 	}
 
 	private void StartAsteroid() {
 		StartCoroutine(SpawnWaves());
+	}
+
+	public void GameOverAsteroid() {
+		StopAsteroid();
+		GameManager.Instance.GameRestart();
+		DestroyAsteroids();
+	}
+
+	private void StopAsteroid() {
+		StopCoroutine(SpawnWaves());
+	}
+
+	private void DestroyAsteroids() {
+		Transform[] Asteroids = AsteroidsPos.GetComponentsInChildren<Transform>();
+		for (int i = 1; i < Asteroids.Length; i++) {
+			Destroy(Asteroids[i].gameObject);
+		}
 	}
 
 	private IEnumerator SpawnWaves() {
@@ -42,7 +62,10 @@ public class AsteroidManager : MonoBehaviour
 														UnityEngine.Random.Range(-spawnValues.y + eyePos / 2, spawnValues.y + eyePos / 2),
 														spawnValues.z);
 					Quaternion spawnRotation = Quaternion.identity;
-					Instantiate(hazard, spawnPosition, spawnRotation);
+					//Instantiate(hazard, spawnPosition, spawnRotation);
+					GameObject Asteroid = Instantiate(hazard, spawnPosition, spawnRotation);
+					Asteroid.transform.SetParent(AsteroidsPos.transform);
+
 					yield return new WaitForSeconds(spawnWait);
 				}
 			}

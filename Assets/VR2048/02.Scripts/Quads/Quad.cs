@@ -55,6 +55,7 @@ public class Quad : MonoBehaviour
 
 		if (hitQuad == QUADTYPE.UPQUAD) {
 			if (poseDistance > perfectPoseLimitDistance) {
+				GameManager.Instance.controlPointText.text += string.Format("NicePose!! ");
 				distancePoint = CalcPoseAngle(poseAngle);
 				GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
 				return distancePoint * 2;
@@ -62,6 +63,7 @@ public class Quad : MonoBehaviour
 				return CalcPoseAngle(poseAngle);
 		} else {
 			if (poseDistance > perfectPoseLimitDistance * 1.5f) {
+				GameManager.Instance.controlPointText.text += string.Format("NicePose!! ");
 				distancePoint = CalcPoseAngle(poseAngle);
 				GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
 				return distancePoint * 2;
@@ -74,10 +76,12 @@ public class Quad : MonoBehaviour
 		int anglePoint = 0;
 
 		if (hitQuad == QUADTYPE.LEFTQUAD && ctrlHand == HANDTYPE.RIGHTHAND) {
+			GameManager.Instance.controlPointText.text += string.Format("NiceControl!! ");
 			anglePoint = CalcPoseAngle(poseAngle);
 			GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
 			return anglePoint * 2;
 		} else if (hitQuad == QUADTYPE.RIGHTQUAD && ctrlHand == HANDTYPE.LEFTHAND) {
+			GameManager.Instance.controlPointText.text += string.Format("NiceControl!! ");
 			anglePoint = CalcPoseAngle(poseAngle);
 			GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
 			return anglePoint * 2;
@@ -88,13 +92,13 @@ public class Quad : MonoBehaviour
 
 	private int CalcPoseAngle(float poseAngle) {
 		if (poseAngle < 1.0f) {
-			GameManager.Instance.controlPointText.text += string.Format("PerfectAimControl!! : {0} 각도: + {1}points \n", poseAngle, perfectControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("PerfectAimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)perfectControlPoints);
 			return perfectControlPoints;
 		} else if (poseAngle < perfectcontrolAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("NiceAimControl!! : {0} 각도: + {1}points \n", poseAngle, niceControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("NiceAimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)niceControlPoints);
 			return niceControlPoints;
 		} else if (poseAngle < controlAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("AimControl!! : {0} 각도: + {1}points \n", poseAngle, controlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("AimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)controlPoints);
 			return controlPoints;
 		} else
 			return 0;

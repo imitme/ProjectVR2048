@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 	public event Action OnRemoveCellNumWhenExpBarrelEvent, ResetGridBarrelEvent;
 
 	//AsteroidManager;
-	public event Action StartAsteroidEvent;
+	public event Action StartAsteroidEvent, GameOverAsteroidEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
 	public bool IsCellMovedCheckforControl { get; set; }
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
 	public void GameOver() {
 		gameStateText.text = "Game Over!\nNo Barrel";
 		GameState = GAMESTATE.GAMEOVER;
-		Debug.Log(GameState);
+		GameOverAsteroidEvent?.Invoke();
 	}
 
 	public void GameRestart() {
