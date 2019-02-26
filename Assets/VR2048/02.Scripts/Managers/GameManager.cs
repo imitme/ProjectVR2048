@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance { get; private set; }
 
+	//GridBarrel;
 	public event Action OnRemoveCellNumWhenExpBarrelEvent, ResetGridBarrelEvent;
+
+	//AsteroidManager;
+	public event Action StartAsteroidEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
 	public bool IsCellMovedCheckforControl { get; set; }
@@ -51,6 +55,7 @@ public class GameManager : MonoBehaviour
 
 	public void GotoInGame() {
 		GameState = GAMESTATE.START;
+		StartAsteroidEvent?.Invoke();
 		ResetUI();
 		ResetGridBarrel();
 	}

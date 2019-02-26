@@ -37,6 +37,9 @@ public class FirePos : MonoBehaviour
 	}
 
 	private void Update() {
+		if (GameManager.Instance.GameState == GAMESTATE.GAMEOVER)
+			return;
+
 		if (ViveInput.GetPressDown(hand, button)) {
 			if (Time.time >= nextFire) {
 				FireRay();

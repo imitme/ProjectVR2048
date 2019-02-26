@@ -20,6 +20,18 @@ public class AsteroidManager : MonoBehaviour
 		StartCoroutine(SpawnWaves());
 	}
 
+	private void OnEnable() {
+		GameManager.Instance.StartAsteroidEvent += StartAsteroid;
+	}
+
+	private void OnDisable() {
+		GameManager.Instance.StartAsteroidEvent -= StartAsteroid;
+	}
+
+	private void StartAsteroid() {
+		StartCoroutine(SpawnWaves());
+	}
+
 	private IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds(startWait);
 		while (true) {

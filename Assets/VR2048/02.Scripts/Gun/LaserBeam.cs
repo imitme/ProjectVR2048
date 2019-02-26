@@ -25,6 +25,9 @@ public class LaserBeam : MonoBehaviour
 	}
 
 	private void Update() {
+		if (GameManager.Instance.GameState == GAMESTATE.GAMEOVER)
+			return;
+
 		Ray ray = new Ray(tr.position, tr.forward);
 		if (ViveInput.GetPressDown(hand, button)) {
 			if (Time.time >= nextFire) {
