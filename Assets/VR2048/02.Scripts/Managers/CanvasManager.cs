@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
 	public GameObject LobbyCanvas;
 
 	private void Start() {
-		OnlyLobbyOn();
+		OnlyLobbyCanvasOn();
 	}
 
 	public void OnInGame_Canvas() {
@@ -33,23 +33,23 @@ public class CanvasManager : MonoBehaviour
 
 	private IEnumerator GotoInGame() {
 		yield return new WaitForSeconds(0.3f);
-		OnlyInGameOn();
+		OnlyInGameCanvasOn();
 		GameManager.Instance.GotoInGame();
 	}
 
 	private IEnumerator GotoLobby() {
 		yield return new WaitForSeconds(0.5f);
-		OnlyLobbyOn();
+		OnlyLobbyCanvasOn();
 		GameManager.Instance.GotoLobby();
 	}
 
-	private void OnlyLobbyOn() {
+	private void OnlyLobbyCanvasOn() {
 		InGameCanvas.SetActive(false);
 		MenuCanvas.SetActive(false);
 		LobbyCanvas.SetActive(true);
 	}
 
-	private void OnlyInGameOn() {
+	private void OnlyInGameCanvasOn() {
 		InGameCanvas.SetActive(true);
 		MenuCanvas.SetActive(false);
 		LobbyCanvas.SetActive(false);

@@ -11,15 +11,22 @@ public partial class GridBarrel : MonoBehaviour
 
 	private IEnumerator MovetoDirProcess(DIRECTION dir) {
 		Debug.Log("MovetoDirProcess : " + dir);
-		CheckEmptyOriginalList();
+		RemoveCellNumMerged();
+		CheckEmptyCellNumsforGameOver();
 		bool isMove = GetCellsDirLine(dir);
-		GameManager.Instance.isCellMoved = isMove;
+		GameManager.Instance.IsCellMovedCheckforControl = isMove;
 		yield return new WaitForSeconds(cellMovingTime);
 		DrawOneCell(isMove);
 	}
 
-	private void CheckEmptyOriginalList() {
-		cellNums.RemoveAll(cn => cn == null);
+	private void RemoveCellNumMerged() {
+		cellNums.RemoveAll(cn => cn == null); //합쳐졌을때, 없어진거 찾아서 리스트에서 빼는거.
+	}
+
+	private void CheckEmptyCellNumsforGameOver() {
+		if (cellNums.Count == 0) {
+			GameManager.Instance.GameOver();
+		}
 	}
 
 	private bool GetCellsDirLine(DIRECTION dir) {
@@ -204,7 +211,7 @@ public partial class GridBarrel : MonoBehaviour
 			}
 		}
 
-		CheckEmptyOriginalList();
+		RemoveCellNumMerged();
 
 		return checkMove;
 	}

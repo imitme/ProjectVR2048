@@ -18,10 +18,16 @@ public class UIManager : MonoBehaviour
 	public HandRole handR = HandRole.RightHand;
 	public HandRole handL = HandRole.LeftHand;
 	public ControllerButton menuButton = ControllerButton.Menu;
+	public ControllerButton gripButton = ControllerButton.Grip;
 
 	private void Update() {
 		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)) {
 			OnOffMenuEvent?.Invoke();
+		}
+		if (GameManager.Instance.GameState == GAMESTATE.RESTART) {
+			if (ViveInput.GetPressDown(handR, gripButton) || ViveInput.GetPressDown(handL, gripButton)) {
+				OnInGameEvent?.Invoke();
+			}
 		}
 	}
 

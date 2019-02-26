@@ -10,6 +10,7 @@ public class AsteroidManager : MonoBehaviour
 	private float spawnWait;
 	private float startWait;
 	private float waveWait;
+	private float eyePos = 1.75f;
 
 	private void Start() {
 		hazardCount = 10;
@@ -22,14 +23,23 @@ public class AsteroidManager : MonoBehaviour
 	private IEnumerator SpawnWaves() {
 		yield return new WaitForSeconds(startWait);
 		while (true) {
-			for (int i = 0; i < hazardCount; i++) {
-				GameObject hazard = hazards[UnityEngine.Random.Range(0, hazards.Length)];
-				Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-				Quaternion spawnRotation = Quaternion.identity;
-				Instantiate(hazard, spawnPosition, spawnRotation);
-				yield return new WaitForSeconds(spawnWait);
+			if (GameManager.Instance.GameState == GAMESTATE.START) {
+				for (int i = 0; i < hazardCount; i++) {
+					GameObject hazard = hazards[UnityEngine.Random.Range(0, hazards.Length)];
+					Vector3 spawnPosition = new Vector3(UnityEngine.Random.Range(-spawnValues.x, spawnValues.x),
+														UnityEngine.Random.Range(-spawnValues.y + eyePos / 2, spawnValues.y + eyePos / 2),
+														spawnValues.z);
+					Quaternion spawnRotation = Quaternion.identity;
+					Instantiate(hazard, spawnPosition, spawnRotation);
+					yield return new WaitForSeconds(spawnWait);
+				}
 			}
 			yield return new WaitForSeconds(waveWait);
+
+			if (GameManager.Instance.GameState == GAMESTATE.GAMEOVER) {
+				GameManager.Instance.GameRestart();
+				break;
+			}
 		}
 	}
 }

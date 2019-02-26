@@ -36,6 +36,10 @@ public partial class GridBarrel : MonoBehaviour
 		GameManager.Instance.ResetGridBarrelEvent -= ResetGridBarrel;
 	}
 
+	private void FixedUpdate() {
+		CheckEmptyCellNumsforGameOver();
+	}
+
 	public void ResetGridBarrel() {
 		ClearGridCellsPrefab();
 		ClearCellNumsPrefab();

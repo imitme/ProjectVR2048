@@ -11,15 +11,23 @@ public class GameManager : MonoBehaviour
 	public event Action OnRemoveCellNumWhenExpBarrelEvent, ResetGridBarrelEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
-	public bool isCellMoved;
+	public bool IsCellMovedCheckforControl { get; set; }
 
 	public TextMesh scoreText;
 	public Text controlPointText;
+	public Text gameStateText;
+
+	public GAMESTATE GameState { get; set; }
+
 	private int score = 0;
 
 	public int Score {
 		get { return score; }
 		set { score = value; scoreText.text = string.Format("Score : {0}", score); }
+	}
+
+	private void Start() {
+		GameState = GAMESTATE.LOAD;
 	}
 
 	private void Awake() {
@@ -29,11 +37,8 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void GotoLobby() {
-		ResetPlayerInfo();
-	}
-
-	private void ResetPlayerInfo() {
-		Score = 0;
+		GameState = GAMESTATE.LOAD;
+		ResetUI();
 	}
 
 	public void AddChargeGauge(float chargeGauge) {
@@ -45,8 +50,15 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void GotoInGame() {
-		ResetPlayerInfo();
+		GameState = GAMESTATE.START;
+		ResetUI();
 		ResetGridBarrel();
+	}
+
+	private void ResetUI() {
+		Score = 0;
+		controlPointText.text = " ";
+		gameStateText.text = " ";
 	}
 
 	private void ResetGridBarrel() {
@@ -54,8 +66,19 @@ public class GameManager : MonoBehaviour
 	}
 
 	public bool CheckIsCellMoved() {
-		bool isCellMove = isCellMoved;
-		isCellMoved = false;
+		bool isCellMove = IsCellMovedCheckforControl;
+		IsCellMovedCheckforControl = false;
 		return isCellMove;
+	}
+
+	public void GameOver() {
+		gameStateText.text = "Game Over!\nNo Barrel";
+		GameState = GAMESTATE.GAMEOVER;
+		Debug.Log(GameState);
+	}
+
+	public void GameRestart() {
+		gameStateText.text = "Press 'Grip_Button' for Restart Immediately!!";
+		GameState = GAMESTATE.RESTART;
 	}
 }

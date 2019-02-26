@@ -27,3 +27,8 @@ public enum QUADTYPE
 {
 	UPQUAD = 0, DOWNQUAD, RIGHTQUAD, LEFTQUAD, count
 }
+
+public enum GAMESTATE
+{
+	LOAD = 0, START, RESTART, GAMEOVER, count
+}

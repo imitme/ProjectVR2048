@@ -110,22 +110,13 @@ public class Barrel : MonoBehaviour
 	}
 
 	public IEnumerator ExpBarrelProcess() {
-		Debug.Log(1);
 		RemoveAtCellNumList();
-		Debug.Log(2 + " / " + expTime);
 		yield return new WaitForSeconds(expTime);
-		Debug.Log(3);
 		HideBarrelandImpactMeshandEffects();
-		Debug.Log(4);
-		Debug.Log("ExpBarrelProcess");
 		ShowExpEffect();
-		Debug.Log(5);
 		float endExpEffectTime = 2.0f;
 		Destroy(barrel, endExpEffectTime);
-		Debug.Log(6);
-		Debug.Log("ExpSfx");
 		GetComponent<BarrelSound>().ExpSfx();
-		Debug.Log(7);
 	}
 
 	private void RemoveAtCellNumList() {
