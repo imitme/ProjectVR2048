@@ -13,6 +13,7 @@ public partial class GridBarrel : MonoBehaviour
 		Debug.Log("MovetoDirProcess : " + dir);
 		CheckEmptyOriginalList();
 		bool isMove = GetCellsDirLine(dir);
+		GameManager.Instance.isCellMoved = isMove;
 		yield return new WaitForSeconds(cellMovingTime);
 		DrawOneCell(isMove);
 	}

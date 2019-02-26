@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public event Action OnRemoveCellNumWhenExpBarrelEvent, ResetGridBarrelEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
+	public bool isCellMoved;
 
 	public TextMesh scoreText;
 	public Text controlPointText;
@@ -50,5 +51,11 @@ public class GameManager : MonoBehaviour
 
 	private void ResetGridBarrel() {
 		ResetGridBarrelEvent?.Invoke();
+	}
+
+	public bool CheckIsCellMoved() {
+		bool isCellMove = isCellMoved;
+		isCellMoved = false;
+		return isCellMove;
 	}
 }

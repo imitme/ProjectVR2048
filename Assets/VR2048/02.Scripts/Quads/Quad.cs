@@ -31,14 +31,19 @@ public class Quad : MonoBehaviour
 		float poseDistance = (firePos - cameraPos.position).magnitude;
 
 		Debug.Log(" controlHand : " + controlHand + " poseAngle : " + poseAngle + "//" + " poseDistance : " + poseDistance);
+		GameManager.Instance.controlPointText.text = string.Format(" ");
+		bool isMoved = CheckIsCellMoved();
+		if (isMoved) {
+			point = CalcControlPoints(controlHand, hitQuad, poseAngle, poseDistance);
+			GameManager.Instance.Score += point;
+		}
+	}
 
-		point = CalcControlPoints(controlHand, hitQuad, poseAngle, poseDistance);
-		//GameManager.Instance.Score += point;
+	private bool CheckIsCellMoved() {
+		return GameManager.Instance.CheckIsCellMoved();
 	}
 
 	private int CalcControlPoints(HANDTYPE ctrlHand, QUADTYPE hitQuad, float poseAngle, float poseDistance) {
-		GameManager.Instance.controlPointText.text = string.Format(" ");
-
 		int distancePoint = CalcPoseDistance(hitQuad, poseAngle, poseDistance);
 		int posePoint = CalcPoseControl(ctrlHand, hitQuad, poseAngle);
 
@@ -83,13 +88,13 @@ public class Quad : MonoBehaviour
 
 	private int CalcPoseAngle(float poseAngle) {
 		if (poseAngle < 1.0f) {
-			GameManager.Instance.controlPointText.text += string.Format("PerfectAimControl!! : + {0}points \n", perfectControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("PerfectAimControl!! : {0} 각도: + {1}points \n", poseAngle, perfectControlPoints);
 			return perfectControlPoints;
 		} else if (poseAngle < perfectcontrolAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("NiceAimControl!! : + {0}points \n", niceControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("NiceAimControl!! : {0} 각도: + {1}points \n", poseAngle, niceControlPoints);
 			return niceControlPoints;
 		} else if (poseAngle < controlAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("AimControl!! : + {0}points \n", controlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("AimControl!! : {0} 각도: + {1}points \n", poseAngle, controlPoints);
 			return controlPoints;
 		} else
 			return 0;
