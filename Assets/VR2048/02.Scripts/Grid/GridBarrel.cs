@@ -36,10 +36,6 @@ public partial class GridBarrel : MonoBehaviour
 		GameManager.Instance.ResetGridBarrelEvent -= ResetGridBarrel;
 	}
 
-	private void FixedUpdate() {
-		//CheckEmptyCellNumsforGameOver();
-	}
-
 	public void ResetGridBarrel() {
 		ClearGridCellsPrefab();
 		ClearCellNumsPrefab();
@@ -74,7 +70,7 @@ public partial class GridBarrel : MonoBehaviour
 		var myPanel = gridCellsPanel.GetComponent<Transform>();
 		var midSize = cellSpan * ((float)totalCount - 1) * 0.5f;
 		var firstPositionX = myPanel.position.x - midSize;
-		var firstPositionY = myPanel.position.y - midSize + 1.75f;
+		var firstPositionY = myPanel.position.y - midSize + 1.25f;
 		var firstPositionZ = myPanel.position.z + midSize;
 
 		Vector3 firstPosition = new Vector3(firstPositionX, firstPositionY, firstPositionZ);

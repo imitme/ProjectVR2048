@@ -12,7 +12,6 @@ public partial class GridBarrel : MonoBehaviour
 	private IEnumerator MovetoDirProcess(DIRECTION dir) {
 		Debug.Log("MovetoDirProcess : " + dir);
 		RemoveCellNumMerged();
-		//CheckEmptyCellNumsforGameOver();
 		bool isMove = GetCellsDirLine(dir);
 		GameManager.Instance.IsCellMovedCheckforControl = isMove;
 		yield return new WaitForSeconds(cellMovingTime);

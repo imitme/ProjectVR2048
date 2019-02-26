@@ -21,7 +21,8 @@ public class UIManager : MonoBehaviour
 	public ControllerButton gripButton = ControllerButton.Grip;
 
 	private void Update() {
-		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)) {
+		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)
+			|| ViveInput.GetPressDown(handR, gripButton) || ViveInput.GetPressDown(handL, gripButton)) {
 			OnOffMenuEvent?.Invoke();
 		}
 		if (GameManager.Instance.GameState == GAMESTATE.RESTART) {
