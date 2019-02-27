@@ -13,7 +13,7 @@ public class Quad : MonoBehaviour
 	private int niceControlPoints = 7;
 	private int controlPoints = 3;
 
-	private float perfectPoseLimitDistance = 1.2f;
+	private float perfectPoseLimitDistance = 1.25f;
 	private float perfectcontrolAngle = 4f;
 	private float controlAngle = 10f;
 
@@ -54,18 +54,18 @@ public class Quad : MonoBehaviour
 		int distancePoint = 0;
 
 		if (hitQuad == QUADTYPE.UPQUAD) {
-			if (poseDistance > perfectPoseLimitDistance) {
-				GameManager.Instance.controlPointText.text += string.Format("NicePose!! ");
+			if (poseDistance > perfectPoseLimitDistance - 0.5f) {
+				GameManager.Instance.controlPointText.text += string.Format("Nice Big Pose!!\n");
 				distancePoint = CalcPoseAngle(poseAngle);
-				GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
+				//GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
 				return distancePoint * 2;
 			} else
 				return CalcPoseAngle(poseAngle);
 		} else {
-			if (poseDistance > perfectPoseLimitDistance * 1.2f) {
-				GameManager.Instance.controlPointText.text += string.Format("NicePose!! ");
+			if (poseDistance > perfectPoseLimitDistance) {
+				GameManager.Instance.controlPointText.text += string.Format("Nice Big Pose!!\n");
 				distancePoint = CalcPoseAngle(poseAngle);
-				GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
+				//GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
 				return distancePoint * 2;
 			} else
 				return CalcPoseAngle(poseAngle);
@@ -76,14 +76,14 @@ public class Quad : MonoBehaviour
 		int anglePoint = 0;
 
 		if (hitQuad == QUADTYPE.LEFTQUAD && ctrlHand == HANDTYPE.RIGHTHAND) {
-			GameManager.Instance.controlPointText.text += string.Format("NiceControl!! ");
+			GameManager.Instance.controlPointText.text += string.Format("fantastic Pose!!\n");
 			anglePoint = CalcPoseAngle(poseAngle);
-			GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
+			//GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
 			return anglePoint * 2;
 		} else if (hitQuad == QUADTYPE.RIGHTQUAD && ctrlHand == HANDTYPE.LEFTHAND) {
-			GameManager.Instance.controlPointText.text += string.Format("NiceControl!! ");
+			GameManager.Instance.controlPointText.text += string.Format("fantastic Pose!!\n");
 			anglePoint = CalcPoseAngle(poseAngle);
-			GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
+			//GameManager.Instance.controlPointText.text += string.Format("PoseDoublePoints!!\n");
 			return anglePoint * 2;
 		} else //if (hitQuad == QUADTYPE.UPQUAD || hitQuad == QUADTYPE.DOWNQUAD) {
 			return CalcPoseAngle(poseAngle);
@@ -92,13 +92,13 @@ public class Quad : MonoBehaviour
 
 	private int CalcPoseAngle(float poseAngle) {
 		if (poseAngle < 1.0f) {
-			GameManager.Instance.controlPointText.text += string.Format("PerfectAimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)perfectControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("Perfect Aim Control!! : 오차 {0} \n", (int)poseAngle);
 			return perfectControlPoints;
 		} else if (poseAngle < perfectcontrolAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("NiceAimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)niceControlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("Nice Aim Control!! : 오차 {0} \n", (int)poseAngle);
 			return niceControlPoints;
 		} else if (poseAngle < controlAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("AimControl!! : {0} 각도: + {1}points \n", (int)poseAngle, (int)controlPoints);
+			GameManager.Instance.controlPointText.text += string.Format("Need more Aim Control!! : 오차 {0} \n", (int)poseAngle);
 			return controlPoints;
 		} else
 			return 0;

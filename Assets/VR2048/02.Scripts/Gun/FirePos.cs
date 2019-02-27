@@ -10,7 +10,7 @@ public class FirePos : MonoBehaviour
 {
 	public WEAPONTYPE currWeapon = WEAPONTYPE.SHOTGUN;
 	public GameObject bullet;
-	public float fireRate = 0.1f;
+	public float fireRate = 0.2f;
 	public ParticleSystem cartridge;
 	public PlayerSfx playerSfx;
 
