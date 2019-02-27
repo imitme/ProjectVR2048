@@ -31,7 +31,7 @@ public class AsteroidManager : MonoBehaviour
 		GameManager.Instance.GameOverAsteroidEvent -= GameOverAsteroid;
 	}
 
-	private void StartAsteroid() {
+	public void StartAsteroid() {
 		StartCoroutine(SpawnWaves());
 	}
 
@@ -42,7 +42,8 @@ public class AsteroidManager : MonoBehaviour
 	}
 
 	private void StopAsteroid() {
-		StopCoroutine(SpawnWaves());
+		//StopCoroutine(SpawnWaves()); //기다렸다 다시시작하는 문제가 발생해 ㅠㅠ
+		StopAllCoroutines();
 	}
 
 	private void DestroyAsteroids() {

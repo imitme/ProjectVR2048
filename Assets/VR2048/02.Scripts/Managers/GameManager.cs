@@ -15,20 +15,33 @@ public class GameManager : MonoBehaviour
 	public event Action StartAsteroidEvent, GameOverAsteroidEvent;
 
 	//public UIManager getUIManager { get; set; }//이미 전역인 객체로 부터 받기 p117
+	public GAMESTATE GameState { get; set; }
+
 	public bool IsCellMovedCheckforControl { get; set; }
 
 	public TextMesh scoreText;
-	public Text controlPointText;
-	public Text gameStateText;
-
-	public GAMESTATE GameState { get; set; }
-
 	private int score = 0;
 
 	public int Score {
 		get { return score; }
 		set { score = value; scoreText.text = string.Format("Score : {0}", score); }
 	}
+
+	public TextMesh playTimeText;
+	private float playTime;
+	private float startSpotTime;
+
+	public float PlayTime {
+		get { return playTime; }
+		set {
+			playTime = value;
+
+			playTimeText.text = string.Format("{0}", playTime);
+		}
+	}
+
+	public Text controlPointText;
+	public Text gameStateText;
 
 	private void Start() {
 		GameState = GAMESTATE.LOAD;
@@ -38,6 +51,9 @@ public class GameManager : MonoBehaviour
 		if (Instance != null) { Destroy(this); return; }
 		Instance = this;
 		//   getUIManager = GameObject.FindObjectOfType<UIManager>();
+	}
+
+	private void Update() {
 	}
 
 	public void GotoLobby() {
@@ -62,8 +78,11 @@ public class GameManager : MonoBehaviour
 
 	private void ResetUI() {
 		Score = 0;
+		PlayTime = 0;
 		controlPointText.text = " ";
 		gameStateText.text = " ";
+		playTimeText.text = " ";
+		playTimeText.gameObject.SetActive(true);
 	}
 
 	private void ResetGridBarrel() {
@@ -83,7 +102,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void GameRestart() {
-		gameStateText.text = "Press 'Grip_Button' for Restart Immediately!!";
+		gameStateText.text = "Press 'Pad_Button' for Restart Immediately!!";
 		GameState = GAMESTATE.RESTART;
 	}
 }

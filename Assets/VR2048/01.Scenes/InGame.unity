@@ -1703,7 +1703,7 @@ GameObject:
   - component: {fileID: 1044267084}
   - component: {fileID: 1044267083}
   m_Layer: 0
-  m_Name: TimeText
+  m_Name: PlayTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2913,6 +2913,7 @@ GameObject:
   - component: {fileID: 1794213416}
   - component: {fileID: 1794213417}
   - component: {fileID: 1794213418}
+  - component: {fileID: 1794213420}
   - component: {fileID: 1794213415}
   - component: {fileID: 1794213419}
   m_Layer: 0
@@ -3045,6 +3046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 702410441}
+  playTimeText: {fileID: 1044267083}
   controlPointText: {fileID: 1987276605}
   gameStateText: {fileID: 141746854}
 --- !u!114 &1794213417
@@ -3176,6 +3178,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1794213420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794213413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03f80aa2f932ad489d3f0181423ee3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1949591385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645114971050767823, guid: c7348e7262c242c459efe09e019f46d3,

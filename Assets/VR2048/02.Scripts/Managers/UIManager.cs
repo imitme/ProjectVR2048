@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
 	public HandRole handL = HandRole.LeftHand;
 	public ControllerButton menuButton = ControllerButton.Menu;
 	public ControllerButton gripButton = ControllerButton.Grip;
+	public ControllerButton padButton = ControllerButton.Pad;
 
 	private void Update() {
 		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)
@@ -26,7 +27,8 @@ public class UIManager : MonoBehaviour
 			OnOffMenuEvent?.Invoke();
 		}
 		if (GameManager.Instance.GameState == GAMESTATE.RESTART) {
-			if (ViveInput.GetPressDown(handR, gripButton) || ViveInput.GetPressDown(handL, gripButton)) {
+			//if (ViveInput.GetPressDown(handR, gripButton) || ViveInput.GetPressDown(handL, gripButton)) {
+			if (ViveInput.GetPressDown(handR, padButton) || ViveInput.GetPressDown(handL, padButton)) {
 				OnInGameEvent?.Invoke();
 			}
 		}
