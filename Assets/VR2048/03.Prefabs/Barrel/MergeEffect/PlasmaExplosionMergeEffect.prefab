@@ -9541,7 +9541,7 @@ GameObject:
   - component: {fileID: 199000012270651464}
   - component: {fileID: 305204541483682079}
   m_Layer: 0
-  m_Name: PlasmaExplosionEffect
+  m_Name: PlasmaExplosionMergeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9555,7 +9555,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011128802252}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4000012936488424}

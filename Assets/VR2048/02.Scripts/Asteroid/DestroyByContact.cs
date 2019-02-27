@@ -20,18 +20,18 @@ public class DestroyByContact : MonoBehaviour
 		}
 
 		if (other.tag == "WEAPON") {
-			StartCoroutine(MoveAsteroid(other));
+			//StartCoroutine(MoveAsteroid(other));
 		}
 
-		//if (other.tag == "WEAPON") {
-		//	Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+		if (other.tag == "WEAPON") {
+			Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
 
-		//	Weapon currWeapon = other.gameObject.GetComponent<Weapon>();
-		//	float currWeaponRangeGauge = currWeapon.rangeGauge;
-		//	Debug.Log(myAsteroid.asteroid.asteroidName + " ---");
-		//	GameManager.Instance.AddChargeGauge(myAsteroidChargeGauge);
-		//	Destroy(gameObject);
-		//}
+			Weapon currWeapon = other.gameObject.GetComponent<Weapon>();
+			float currWeaponRangeGauge = currWeapon.rangeGauge;
+			Debug.Log(myAsteroid.asteroid.asteroidName + " ---");
+			GameManager.Instance.AddChargeGauge(myAsteroidChargeGauge);
+			Destroy(gameObject);
+		}
 	}
 
 	private IEnumerator MoveAsteroid(Collider other) {
