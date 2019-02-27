@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 	public ControllerButton menuButton = ControllerButton.Menu;
 	public ControllerButton gripButton = ControllerButton.Grip;
 	public ControllerButton padButton = ControllerButton.Pad;
+	public ControllerButton trackPadButton = ControllerButton.DPadDown;
 
 	private void Update() {
 		if (ViveInput.GetPressDown(handR, menuButton) || ViveInput.GetPressDown(handL, menuButton)
@@ -28,7 +29,8 @@ public class UIManager : MonoBehaviour
 		}
 		if (GameManager.Instance.GameState == GAMESTATE.RESTART) {
 			//if (ViveInput.GetPressDown(handR, gripButton) || ViveInput.GetPressDown(handL, gripButton)) {
-			if (ViveInput.GetPressDown(handR, padButton) || ViveInput.GetPressDown(handL, padButton)) {
+			if (ViveInput.GetPressDown(handR, padButton) || ViveInput.GetPressDown(handL, padButton)
+				|| ViveInput.GetPressDown(handL, trackPadButton) || ViveInput.GetPressDown(handL, trackPadButton)) {
 				OnInGameEvent?.Invoke();
 			}
 		}

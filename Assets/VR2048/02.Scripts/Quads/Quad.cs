@@ -14,8 +14,8 @@ public class Quad : MonoBehaviour
 	private int controlPoints = 3;
 
 	private float perfectPoseLimitDistance = 1.2f;
-	private float perfectcontrolAngle = 5f;
-	private float controlAngle = 15f;
+	private float perfectcontrolAngle = 4f;
+	private float controlAngle = 10f;
 
 	public void SendControlPoint(object[] _params) {
 		int point = 0;
@@ -62,7 +62,7 @@ public class Quad : MonoBehaviour
 			} else
 				return CalcPoseAngle(poseAngle);
 		} else {
-			if (poseDistance > perfectPoseLimitDistance * 1.5f) {
+			if (poseDistance > perfectPoseLimitDistance * 1.2f) {
 				GameManager.Instance.controlPointText.text += string.Format("NicePose!! ");
 				distancePoint = CalcPoseAngle(poseAngle);
 				GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);

@@ -814,7 +814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &594537148
 Transform:
   m_ObjectHideFlags: 0
@@ -3033,6 +3033,8 @@ MonoBehaviour:
   handL: 1
   menuButton: 4
   gripButton: 2
+  padButton: 1
+  trackPadButton: 23
 --- !u!114 &1794213416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3552,10 +3554,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3913,6 +3915,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 148992595429560277, guid: c7348e7262c242c459efe09e019f46d3,
+        type: 3}
+      propertyPath: leftLaserPointer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 148992595429560277, guid: c7348e7262c242c459efe09e019f46d3,
+        type: 3}
+      propertyPath: leftCurvePointer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 148992595429560277, guid: c7348e7262c242c459efe09e019f46d3,
+        type: 3}
+      propertyPath: rightCurvePointer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 148992595429560277, guid: c7348e7262c242c459efe09e019f46d3,
+        type: 3}
+      propertyPath: rightLaserPointer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7348e7262c242c459efe09e019f46d3, type: 3}
