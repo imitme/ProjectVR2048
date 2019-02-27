@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
 		get { return playTime; }
 		set {
 			playTime = value;
-
-			playTimeText.text = string.Format("{0}", playTime);
+			float sec = playTime % 60;
+			float min = playTime / 60 % 60;
+			float hour = playTime / 3600;
+			playTimeText.text = string.Format("{0:00} : {1:00} : {2:00}", hour, min, sec);
 		}
 	}
 
