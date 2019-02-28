@@ -13,7 +13,7 @@ public class Quad : MonoBehaviour
 	private int niceControlPoints = 7;
 	private int controlPoints = 3;
 
-	private float perfectPoseLimitDistance = 1.25f;
+	private float perfectPoseLimitDistance = 1.35f;
 	private float perfectcontrolAngle = 4f;
 	private float controlAngle = 10f;
 
@@ -54,7 +54,7 @@ public class Quad : MonoBehaviour
 		int distancePoint = 0;
 
 		if (hitQuad == QUADTYPE.UPQUAD) {
-			if (poseDistance > perfectPoseLimitDistance - 0.5f) {
+			if (poseDistance > perfectPoseLimitDistance - 0.6f) {
 				GameManager.Instance.controlPointText.text += string.Format("Nice Big Pose!!\n");
 				distancePoint = CalcPoseAngle(poseAngle);
 				//GameManager.Instance.controlPointText.text += string.Format("NicePose!! DoublePoints!: + {0}points \n", distancePoint * 2);
@@ -98,9 +98,11 @@ public class Quad : MonoBehaviour
 			GameManager.Instance.controlPointText.text += string.Format("Nice Aim Control!! : 오차 {0} \n", (int)poseAngle);
 			return niceControlPoints;
 		} else if (poseAngle < controlAngle) {
-			GameManager.Instance.controlPointText.text += string.Format("Need more Aim Control!! : 오차 {0} \n", (int)poseAngle);
+			GameManager.Instance.controlPointText.text += string.Format("Control!! : 오차 {0} \n", (int)poseAngle);
 			return controlPoints;
-		} else
+		} else {
+			//GameManager.Instance.controlPointText.text += string.Format("Neeeeeed Aim Control!! : 오차 {0} \n", (int)poseAngle);
 			return 0;
+		}
 	}
 }
